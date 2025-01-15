@@ -6,19 +6,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TakeMeTo"
         mc:Ignorable="d"
-        Title="MainWindow" Height="50" Width="400" Background="#FF474747" WindowStyle="None" ResizeMode="NoResize" Loaded="SearchBar_Loaded">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <tb:TaskbarIcon x:Name="TrayIcon"
-                    Visibility="Visible"
-                    ToolTipText="TakeMeTo"
-                    MenuActivation="LeftOrRightClick" 
-                    IconSource="/TrayIcon.png"
-      />
-        <Button Content="Button" HorizontalAlignment="Left" Height="0" Margin="99,146,0,0" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Margin="120,22,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-    </Grid>
+        Deactivated="App_Deactivated"
+        Title="MainWindow" Height="50" Width="400"  WindowStyle="None" ResizeMode="NoResize" Loaded="SearchBar_Loaded" Background="Transparent" AllowsTransparency="True">
+    <Border x:Name="Border" Background="#FF474747" CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="3*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <tb:TaskbarIcon x:Name="TrayIcon"
+                Visibility="Visible"
+                ToolTipText="TakeMeTo"
+                MenuActivation="LeftOrRightClick" 
+                IconSource="/TrayIcon.png" Grid.RowSpan="2"
+  />
+            <Button Content="Button" HorizontalAlignment="Left" Height="0" Margin="99,126,0,0" VerticalAlignment="Top" Grid.Row="1"/>
+            <TextBox HorizontalAlignment="Left" Margin="34,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="356" Height="30" BorderThickness="0" BorderBrush="#FF474747" Foreground="#FFA1B7B8" SelectionBrush="#FF474747" FontSize="20" Background="#FF474747" Grid.RowSpan="2"/>
+        </Grid>
+    </Border>
 
 </Window>

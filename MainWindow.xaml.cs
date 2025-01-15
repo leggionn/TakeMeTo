@@ -57,6 +57,7 @@ namespace TakeMeTo
                     else
                     {
                         this.Visibility = Visibility.Visible;
+                        this.Activate();
                     }
                 }
             }
@@ -106,6 +107,32 @@ namespace TakeMeTo
 
             HwndSource source = HwndSource.FromHwnd(hWnd);
             source.AddHook(WndProc);
+        }
+
+        private void TextBox_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+        }
+
+        private void TrayIcon_LostFocus(object sender, RoutedEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+
+        }
+        private void App_Deactivated(object sender, EventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+        }
+
+        private void TrayIcon_LostMouseCapture(object sender, MouseEventArgs e)
+        {
+            this.Visibility = Visibility.Hidden;
+
         }
     }
 }
