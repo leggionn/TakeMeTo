@@ -23,11 +23,15 @@ namespace TakeMeTo
     /// </summary>
     public partial class MainWindow : Window
     {
+        ArrayList list = new ArrayList();
         private Hotkey _hotkey;
         public MainWindow()
         {
             InitializeComponent();
             this.ShowInTaskbar = false;
+            MainTB.Focus();
+            AddToList("http://google.com");
+            MainTB.VerticalContentAlignment = VerticalAlignment.Center;
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -85,7 +89,7 @@ namespace TakeMeTo
                 Alt = 0x0001,
                 Control = 0x0002,
                 Shift = 0x0004,
-                Window = 0x0008
+                Window  = 0x0008
             }
 
             public void RegisterHotkeys()
@@ -133,6 +137,45 @@ namespace TakeMeTo
         {
             this.Visibility = Visibility.Hidden;
 
+        }
+        private void AddToList(String text)
+        {
+            Label lbl = new Label();
+            Border border = new Border();
+            border.Width = 500;
+            border.Height = 50;
+            border.BorderBrush = null;
+            border.Background = new SolidColorBrush(Color.FromRgb(89, 89, 89));
+            RootGrid.Children.Add(border);
+            lbl.Content = text;
+            int top = list.Count * 50 + 50;
+            lbl.Margin = new Thickness(34, top + 7, 0, 0);
+            border.Margin = new Thickness(0, top, 0, 0);
+            this.Height += 50;
+            list.Add(lbl);
+            MainTB.Margin = new Thickness(34, 0, 0, list.Count * 50);
+            MainIco.Margin = new Thickness(10, 16, 372, 16 + list.Count * 50);
+            RootGrid.Children.Add(lbl);
+            lbl.FontSize = 20;
+            lbl.Foreground = Brushes.White;
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                if (MainTB.Text.Length > 0)
+                {
+                    String MainText = MainTB.Text;
+                    if (MainText[0].Equals('/'))
+                    {
+                        System.Diagnostics.Process.Start("http:/" + MainText);
+                    }
+                    else if(MainText.Contains("http://")){
+                        System.Diagnostics.Process.Start(MainText);
+                    }
+                }
+            }
         }
     }
 }

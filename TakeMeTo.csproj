@@ -108,5 +108,8 @@
   <ItemGroup>
     <Resource Include="TrayIcon.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="SearchIcon.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
